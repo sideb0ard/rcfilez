@@ -83,6 +83,8 @@ fi
 #alias la='ls -A'
 #alias l='ls -CF'
 
+alias jsonlint='python -mjson.tool'
+
 # Alias definitions.
 # You may want to put all your additions into a separate file like
 # ~/.bash_aliases, instead of adding them here directly.
