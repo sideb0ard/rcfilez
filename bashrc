@@ -84,6 +84,7 @@ fi
 #alias l='ls -CF'
 
 alias jsonlint='python -mjson.tool'
+alias nocom="egrep -v '(^#|^$|^	+#)'"
 
 # Alias definitions.
 # You may want to put all your additions into a separate file like
