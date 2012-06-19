@@ -1,0 +1,7 @@
+SET_COOKIES:TRUE
+ACCEPT_ALL_COOKIES:TRUE
+PERSISTENT_COOKIES:TRUE
+COOKIE_FILE:/Users/tsideboard/.cookies/.lynx_cookies
+COOKIE_SAVE_FILE:/Users/tsideboard/.cookies/.lynx_cookies
+COOKIE_LOOSE_INVALID_DOMAINS:sports.espn.go.com,espn.go.com,.go.com,
+FORCE_SSL_COOKIES_SECURE:FALSE
