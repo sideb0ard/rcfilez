@@ -7,38 +7,33 @@ if [ -z "$debian_chroot" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-case "$TERM" in
-    xterm-*color|screen) color_prompt=yes;; 
+sh_norm="\[\033[0m\]"
+sh_black="\[\033[0;30m\]"
+sh_darkgray="\[\033[1;30m\]"
+sh_blue="\[\033[0;34m\]"
+sh_light_blue="\[\033[1;34m\]"
+sh_green="\[\033[0;32m\]"
+sh_light_green="\[\033[1;32m\]"
+sh_cyan="\[\033[0;36m\]"
+sh_light_cyan="\[\033[1;36m\]"
+sh_red="\[\033[0;31m\]"
+sh_light_red="\[\033[1;31m\]"
+sh_purple="\[\033[0;35m\]"
+sh_light_purple="\[\033[1;35m\]"
+sh_brown="\[\033[0;33m\]"
+sh_yellow="\[\033[1;33m\]"
+sh_light_gray="\[\033[0;37m\]"
+sh_white="\[\033[1;37m\]"
+
+case `hostname` in
+    "livehost"|"production_server"|"sauron") HOSTCOLOUR=${sh_red};;
+    "staging-node")      HOSTCOLOUR=${sh_yellow} ;;
+    *)              HOSTCOLOUR=${sh_green} ;;
 esac
 
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-if [ "$color_prompt" = yes ]; then
-    PS1='\[\e[0;32m\]\u\[\e[m\] \[\e[1;34m\]\w\[\e[m\] \[\e[1;32m\]\$\[\e[m\] \[\e[1;37m\]'
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+export PROMPT_COMMAND='if [ $? -ne 0 ];then ERROR_FLAG=1;else ERROR_FLAG=;fi; '
+export PS1=${sh_white}'\u@'${HOSTCOLOUR}'\h'${sh_norm}' \w\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_re
+d}'}\$${ERROR_FLAG:+'${sh_norm}'} '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
