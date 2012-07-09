@@ -25,15 +25,13 @@ sh_yellow="\[\033[1;33m\]"
 sh_light_gray="\[\033[0;37m\]"
 sh_white="\[\033[1;37m\]"
 
-case `hostname` in
-    "livehost"|"production_server"|"sauron") HOSTCOLOUR=${sh_red};;
-    "staging-node")      HOSTCOLOUR=${sh_yellow} ;;
-    *)              HOSTCOLOUR=${sh_green} ;;
+case `whoami` in
+    "root") UCOLOUR=${sh_red};;
+    *)      UCOLOUR=${sh_green} ;;
 esac
 
 export PROMPT_COMMAND='if [ $? -ne 0 ];then ERROR_FLAG=1;else ERROR_FLAG=;fi; '
-export PS1=${sh_white}'\u@'${HOSTCOLOUR}'\h'${sh_norm}' \w\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_re
-d}'}\$${ERROR_FLAG:+'${sh_norm}'} '
+export PS1=${UCOLOUR}'\u@'${sh_white}'\h'${sh_norm}' \w\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_red}'}\$${ERROR_FLAG:+'${sh_norm}'} '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
