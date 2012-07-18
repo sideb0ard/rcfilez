@@ -45,6 +45,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
 fi
 
+bind Space:magic-space
+
 # some more ls aliases
 alias jsonlint='python -mjson.tool'
 alias nocom="egrep -v '(^#|^$|^	+#)'"
