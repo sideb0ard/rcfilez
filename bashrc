@@ -58,3 +58,5 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 export PATH=$PATH:~/Scriptz/
 export EDITOR=vi
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
