@@ -45,6 +45,8 @@ if [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto'
 fi
 
+alias s='screen -r'
+
 bind Space:magic-space
 
 # some more ls aliases
