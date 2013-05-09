@@ -10,3 +10,4 @@ set autoindent
 set smartindent
 set showmatch
 set background=dark
+set ruler
