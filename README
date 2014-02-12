@@ -1,1 +1,4 @@
 Runtime Conf files for variouszzz
+
+on Os X - remember terminal uses bash_profile, so create a .bash_profile with:
+[[ -s ~/.bashrc ]] && source ~/.bashrc
