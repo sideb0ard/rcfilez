@@ -1,0 +1,68 @@
+sh_norm="\[\033[0m\]"
+sh_black="\[\033[0;30m\]"
+sh_darkgray="\[\033[1;30m\]"
+sh_blue="\[\033[0;34m\]"
+sh_light_blue="\[\033[1;34m\]"
+sh_green="\[\033[0;32m\]"
+sh_light_green="\[\033[1;32m\]"
+sh_cyan="\[\033[0;36m\]"
+sh_light_cyan="\[\033[1;36m\]"
+sh_red="\[\033[0;31m\]"
+sh_light_red="\[\033[1;31m\]"
+sh_purple="\[\033[0;35m\]"
+sh_light_purple="\[\033[1;35m\]"
+sh_brown="\[\033[0;33m\]"
+sh_yellow="\[\033[1;33m\]"
+sh_light_gray="\[\033[0;37m\]"
+sh_white="\[\033[1;37m\]"
+
+case `whoami` in
+    "root") UCOLOUR=${sh_red};;
+    *)      UCOLOUR=${sh_green} ;;
+esac
+
+export PROMPT_COMMAND='if [ $? -ne 0 ];then ERROR_FLAG=1;else ERROR_FLAG=;fi; '
+export PS1=${UCOLOUR}'\u@'${sh_cyan}'\h'${sh_norm}' \w\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_red}'}\$${ERROR_FLAG:+'${sh_norm}'} '
+
+export GOPATH="/Users/thorsten/Code/GOWorkSpace"
+
+alias ls='ls -G'
+alias ll='ls -Gal'
+alias l='ls -Gal'
+alias k='knife'
+alias v='ssh -i ~/.vagrant.d/insecure_private_key -p 2222 vagrant@localhost'
+alias cdo='cd ~/Code/openaura'
+alias cdc='cd ~/Code'
+alias cdt='cd ~/Code/Codetraxx'
+alias cdb="cd /Users/thorsten/Code/TheB0ardside/"
+alias cds='cd /Users/thorsten/Code/Sketches'
+alias grep="grep --color='always'"
+alias demoLogz="ssh deploy '(ssh demo tail -f /var/log/nginx/demo-rails-02.access.log)' | logstalgia -"
+alias hugo="hugo server -b http://theb0ardside.com --source=/Users/thorsten/Code/TheB0ardside/ "
+alias s3sync="aws s3 sync /Users/thorsten/Code/TheB0ardside/public s3://theb0ardside.com"
+alias tc="rm -rf /usr/local/Cellar/tomcat/7.0.47/libexec/webapps/ROOT* ; mv /Users/thorsten/Code/aura-api/target/scala-2.10/scalatra-particle-api_2.10-0.3.0-SNAPSHOT.war /usr/local/Cellar/tomcat/7.0.47/libexec/webapps/ROOT.war; /usr/local/Cellar/tomcat/7.0.47/libexec/bin/catalina.sh stop; /usr/local/Cellar/tomcat/7.0.47/libexec/bin/catalina.sh start"
+
+PATH=/usr/local/bin:$PATH:$HOME/.rvm/bin:$HOME/Scriptz:$HOME/bin:/usr/local/sbin:$GOPATH/bin # Add RVM to PATH for scripting
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+#/Users/thorsten/.rvm/scripts/rvm
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+   . `brew --prefix`/etc/bash_completion
+fi
+
+eval "$(hub alias -s)"
+
+alias redis-start='redis-server /usr/local/etc/redis.conf'
+alias es='elasticsearch -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml'
+alias esf='elasticsearch -f -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml'
+alias cdg='cd $GOPATH'
+alias cdgs='cd $GOPATH/src/github.com/sideb0ard/'
+alias trl='tail -f /usr/local/var/log/rabbitmq/rabbit@localhost.log'
+alias statunnel='echo "Running ssh -i ~/.ssh/openaura-ops.pem -v -ND 9696 ubuntu@deploy.openaura.net"; ssh -i ~/.ssh/openaura-ops.pem -v -ND 9696 ubuntu@deploy.openaura.net'
+
+export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
+
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+
