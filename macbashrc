@@ -25,7 +25,14 @@ export PROMPT_COMMAND='if [ $? -ne 0 ];then ERROR_FLAG=1;else ERROR_FLAG=;fi; '
 export PS1=${UCOLOUR}'\u@'${sh_cyan}'\h'${sh_norm}' \w\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_red}'}\$${ERROR_FLAG:+'${sh_norm}'} '
 
 export GOPATH="/Users/thorsten/Code/GOWorkSpace"
+export GOROOT=`go env GOROOT`
 
+alias r='rabbitmq-server'
+alias gf='go fmt'
+alias gb='go build'
+alias b='brew'
+alias bs='brew search'
+alias bi='brew install'
 alias ls='ls -G'
 alias ll='ls -Gal'
 alias l='ls -Gal'
@@ -36,10 +43,11 @@ alias cdc='cd ~/Code'
 alias cdt='cd ~/Code/Codetraxx'
 alias cdb="cd /Users/thorsten/Code/TheB0ardside/"
 alias cds='cd /Users/thorsten/Code/Sketches'
+alias cdk='cd /Users/thorsten/Code/Scriptkid606'
 alias grep="grep --color='always'"
 alias demoLogz="ssh deploy '(ssh demo tail -f /var/log/nginx/demo-rails-02.access.log)' | logstalgia -"
 alias hugo="hugo server -b http://theb0ardside.com --source=/Users/thorsten/Code/TheB0ardside/ "
-alias s3sync="aws s3 sync /Users/thorsten/Code/TheB0ardside/public s3://theb0ardside.com"
+alias s3sync="aws s3 sync /Users/thorsten/Code/TheB0ardside/public s3://theb0ardside.com ; cd /Users/thorsten/Code/TheB0ardside; git add -A && git commit -m \"s3sync backup\" -a && git push"
 alias tc="rm -rf /usr/local/Cellar/tomcat/7.0.47/libexec/webapps/ROOT* ; mv /Users/thorsten/Code/aura-api/target/scala-2.10/scalatra-particle-api_2.10-0.3.0-SNAPSHOT.war /usr/local/Cellar/tomcat/7.0.47/libexec/webapps/ROOT.war; /usr/local/Cellar/tomcat/7.0.47/libexec/bin/catalina.sh stop; /usr/local/Cellar/tomcat/7.0.47/libexec/bin/catalina.sh start"
 
 PATH=/usr/local/bin:$PATH:$HOME/.rvm/bin:$HOME/Scriptz:$HOME/bin:/usr/local/sbin:$GOPATH/bin # Add RVM to PATH for scripting
@@ -66,3 +74,6 @@ export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 
+#export LC_CTYPE=C
+#export LANG=C
+export LANG="en_US.UTF-8"
