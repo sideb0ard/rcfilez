@@ -18,13 +18,14 @@ sh_white="\[\033[1;37m\]"
 
 case `whoami` in
     "root") UCOLOUR=${sh_red};;
-    *)      UCOLOUR=${sh_green} ;;
+    *)      UCOLOUR=${sh_white} ;;
 esac
 
 export PROMPT_COMMAND='if [ $? -ne 0 ];then ERROR_FLAG=1;else ERROR_FLAG=;fi; '
-export PS1=${UCOLOUR}'\u@'${sh_cyan}'\h'${sh_norm}' \w\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_red}'}\$${ERROR_FLAG:+'${sh_norm}'} '
+#export PS1=${UCOLOUR}'\u@'${sh_cyan}'\h'${sh_norm}' \w\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_red}'}\$${ERROR_FLAG:+'${sh_norm}'} '
+export PS1=${UCOLOUR}'\u@'${sh_light_purple}'mb'${sh_purple}' \w\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_red}'}\$${ERROR_FLAG:+'${sh_norm}'} '
 
-export GOPATH="/Users/thorsten/Code/GOWorkSpace"
+export GOPATH="/Users/thorsten/Golang"
 export GOROOT=`go env GOROOT`
 
 alias r='rabbitmq-server'
@@ -37,22 +38,24 @@ alias ls='ls -G'
 alias ll='ls -Gal'
 alias l='ls -Gal'
 alias k='knife'
-alias v='ssh -i ~/.vagrant.d/insecure_private_key -p 2222 vagrant@localhost'
-alias cdo='cd ~/Code/openaura'
+alias vs='vagrant ssh'
 alias cdc='cd ~/Code'
+alias cdn='cd ~/NewCodez'
+alias cdd='cd ~/Dropcode/net-admin'
+alias cdv='cd ~/Code/DropVagrant'
 alias cdt='cd ~/Code/Codetraxx'
 alias cdb="cd /Users/thorsten/Code/TheB0ardside/"
 alias cds='cd /Users/thorsten/Code/Sketches'
 alias cdk='cd /Users/thorsten/Code/Scriptkid606'
 alias grep="grep --color='always'"
 alias demoLogz="ssh deploy '(ssh demo tail -f /var/log/nginx/demo-rails-02.access.log)' | logstalgia -"
-alias hugo="hugo server -b http://theb0ardside.com --source=/Users/thorsten/Code/TheB0ardside/ "
+alias hugo="hugo server --appendPort=false -b http://theb0ardside.com --source=/Users/thorsten/Code/TheB0ardside/ "
 alias s3sync="aws s3 sync /Users/thorsten/Code/TheB0ardside/public s3://theb0ardside.com ; cd /Users/thorsten/Code/TheB0ardside; git add -A && git commit -m \"s3sync backup\" -a && git push"
 alias tc="rm -rf /usr/local/Cellar/tomcat/7.0.47/libexec/webapps/ROOT* ; mv /Users/thorsten/Code/aura-api/target/scala-2.10/scalatra-particle-api_2.10-0.3.0-SNAPSHOT.war /usr/local/Cellar/tomcat/7.0.47/libexec/webapps/ROOT.war; /usr/local/Cellar/tomcat/7.0.47/libexec/bin/catalina.sh stop; /usr/local/Cellar/tomcat/7.0.47/libexec/bin/catalina.sh start"
 
 PATH=/usr/local/bin:$PATH:$HOME/.rvm/bin:$HOME/Scriptz:$HOME/bin:/usr/local/sbin:$GOPATH/bin # Add RVM to PATH for scripting
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+#if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 #/Users/thorsten/.rvm/scripts/rvm
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
@@ -60,15 +63,13 @@ if [ -f `brew --prefix`/etc/bash_completion ]; then
    . `brew --prefix`/etc/bash_completion
 fi
 
-eval "$(hub alias -s)"
+alias a='source env/bin/activate'
+alias d='deactivate'
 
 alias redis-start='redis-server /usr/local/etc/redis.conf'
-alias es='elasticsearch -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml'
-alias esf='elasticsearch -f -D es.config=/usr/local/opt/elasticsearch/config/elasticsearch.yml'
 alias cdg='cd $GOPATH'
 alias cdgs='cd $GOPATH/src/github.com/sideb0ard/'
 alias trl='tail -f /usr/local/var/log/rabbitmq/rabbit@localhost.log'
-alias statunnel='echo "Running ssh -i ~/.ssh/openaura-ops.pem -v -ND 9696 ubuntu@deploy.openaura.net"; ssh -i ~/.ssh/openaura-ops.pem -v -ND 9696 ubuntu@deploy.openaura.net'
 
 export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
 
@@ -77,3 +78,16 @@ if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 #export LC_CTYPE=C
 #export LANG=C
 export LANG="en_US.UTF-8"
+
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_60.jdk/Contents/Home/
+export PATH=$JAVA_HOME/bin:$PATH
+export EDITOR=vi
+source $HOME/.awscredz
+
+function _update_ps1() {
+  export PS1="$(/Users/thorsten/NewCodez/powerline-shell/powerline-shell.py $? 2> /dev/null)"
+}
+
+#export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+
+export PUPPETDIR="/Users/thorsten/Dropcode/net-admin/puppet"
