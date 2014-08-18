@@ -1,0 +1,20 @@
+[user]
+	name = Thor Sideburns
+	email = thorsten.sideb0ard@gmail.com
+[push]
+	default = simple
+
+[alias]
+     switch = !legit switch \"$@\"
+     branches = !legit branches
+     sprout = !legit sprout \"$@\"
+     unpublish = !legit unpublish \"$@\"
+     harvest = !legit harvest \"$@\"
+     sync = !legit sync \"$@\"
+     publish = !legit publish \"$@\"
+     graft = !legit graft \"$@\"
+     iton = flow release start
+     itup = flow release publish
+     irdone = flow release finish
+     tyup = !git push --tags && git push origin develop && git push origin master
+	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
