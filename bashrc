@@ -27,11 +27,11 @@ sh_white="\[\033[1;37m\]"
 
 case `whoami` in
     "root") UCOLOUR=${sh_red};;
-    *)      UCOLOUR=${sh_green} ;;
+    *)      UCOLOUR=${sh_cyan} ;;
 esac
 
 export PROMPT_COMMAND='if [ $? -ne 0 ];then ERROR_FLAG=1;else ERROR_FLAG=;fi; '
-export PS1=${UCOLOUR}'\u@'${sh_cyan}'\h'${sh_norm}' \w\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_red}'}\$${ERROR_FLAG:+'${sh_norm}'} '
+export PS1=${UCOLOUR}'\u@'${sh_blue}'\h'${sh_norm}' \w\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_red}'}\$${ERROR_FLAG:+'${sh_norm}'} '
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
