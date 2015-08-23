@@ -1,10 +1,11 @@
 #!/bin/sh
 
-for file in *rc
+for file in *rc git*
     do HOMEFILE=.$file
     echo "Copying $file to ~/$HOMEFILE"
     cp $file ~/$HOMEFILE
 done
+
 
 echo "And done!"
 

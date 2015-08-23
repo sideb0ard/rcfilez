@@ -26,9 +26,7 @@ case `whoami` in
 esac
 
 export PROMPT_COMMAND='if [ $? -ne 0 ];then ERROR_FLAG=1;else ERROR_FLAG=;fi; '
-#export PS1=${UCOLOUR}'\u@'${sh_cyan}'\h'${sh_norm}' \w\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_red}'}\$${ERROR_FLAG:+'${sh_norm}'} '
-#export PS1=${UCOLOUR}'\u@'${sh_light_purple}'mb'${sh_purple}' [\w]\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_red}'}\$\$${ERROR_FLAG:+'${sh_norm}'} '
-export PS1=${UCOLOUR}'\u'${sh_norm}'@'${sh_cyan}'mb'${sh_white}' [\w]\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_red}'}\$${ERROR_FLAG:+'${sh_norm}'} '
+export PS1=${UCOLOUR}'\u'${sh_norm}'@'${sh_cyan}'\h'${sh_white}' [\w]\n'${sh_norm}'${ERROR_FLAG:+'${sh_light_red}'}\$${ERROR_FLAG:+'${sh_norm}'} '
 
 ################################################################################
 # IFFY STUFF
@@ -79,9 +77,7 @@ alias s3sync="aws s3 sync /Users/sideboard/NewCodez/TheB0ardside/public s3://the
 # EXPORTS
 
 export GOPATH="${HOME}/Golang"
-export GOROOT=`go env GOROOT`
-export JAVA_HOME=$(/usr/libexec/java_home)
-export EDITOR=vim
+# export GOROOT=`go env GOROOT`
 export VISUAL=vim
 export HISTSIZE=1000
 export SAVEHIST=1000
