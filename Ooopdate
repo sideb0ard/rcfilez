@@ -1,10 +1,14 @@
 #!/bin/sh
 
-for file in *rc
+for file in *rc git*
     do HOMEFILE=.$file
     echo "Copying $file to ~/$HOMEFILE"
     cp $file ~/$HOMEFILE
 done
+
+
+echo "Installing standard packages..."
+sudo apt-get update && sudo apt-get install -y tmux mosh htop curl sysstat git tree dstat lsof strace procps ca-certificates vim
 
 echo "And done!"
 
