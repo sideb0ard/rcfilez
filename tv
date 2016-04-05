@@ -1,0 +1,13 @@
+#!/bin/sh
+SESSION=`basename $PWD`
+
+tmux -2 new-session -d -s $SESSION
+tmux split-window -v
+
+tmux select-pane -t 0
+tmux resize-pane -D 10
+
+tmux send-keys "vim" C-m
+
+
+tmux -2 attach -t $SESSION
